@@ -10,7 +10,7 @@ db=client.admin
 result = db.Users.find()
 
 total_accounts=len(list(result)) #get number of total accounts
-print(total_accounts)
+print("Total accounts:", total_accounts)
 for i in range(1,total_accounts+1): #iterate through all documents in Users collection, add +1 to total_accounts so last document will be updated as well
     db.Users.update_one(
         { "UserId" : i },
@@ -18,14 +18,50 @@ for i in range(1,total_accounts+1): #iterate through all documents in Users coll
         {
         "AmountRemaining": -1,
         "Cmid": i,
-        "ExpirationDate": "null",
+        "ExpirationDate": None,
         "ItemId": 1
         },
         {
         "AmountRemaining": -1,
         "Cmid": i,
-        "ExpirationDate": "null",
+        "ExpirationDate": None,
         "ItemId": 12
         }
     ]} }
+    )
+    db.Users.update_one(
+        { "UserId" : i },
+        { "$set": {     "Loadout": {
+            "Backpack": 0,
+            "Boots": 1089,
+            "Cmid": i,
+            "Face": 0,
+            "FunctionalItem1": 0,
+            "FunctionalItem2": 0,
+            "FunctionalItem3": 0,
+            "Gloves": 1086,
+            "Head": 1084,
+            "LoadoutId": 0,
+            "LowerBody": 1088,
+            "MeleeWeapon": 1,
+            "QuickItem1": 0,
+            "QuickItem2": 0,
+            "QuickItem3": 0,
+            "SkinColor": "#FFFFFF",
+            "Type": 0,
+            "UpperBody": 1087,
+            "Weapon1": 12,
+            "Weapon1Mod1": 0,
+            "Weapon1Mod2": 0,
+            "Weapon1Mod3": 0,
+            "Weapon2": 0,
+            "Weapon2Mod1": 0,
+            "Weapon2Mod2": 0,
+            "Weapon2Mod3": 0,
+            "Weapon3": 0,
+            "Weapon3Mod1": 0,
+            "Weapon3Mod2": 0,
+            "Weapon3Mod3": 0,
+            "Webbing": 0
+    }} }
     )
