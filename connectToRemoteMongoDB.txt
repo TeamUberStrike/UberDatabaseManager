@@ -1,0 +1,26 @@
+using ssh port forwarding: 
+https://jasonwatmore.com/post/2020/02/05/connect-to-remote-mongodb-on-aws-ec2-simply-and-securely-via-ssh-tunnel
+
+ssh for windows aws:
+https://stackoverflow.com/questions/67841440/can-we-ssh-to-windows-ec2-instance-in-aws
+
+
+or just connect directly:
+https://ianlondon.github.io/blog/mongodb-auth/
+
+
+in monod.cfg:
+bindIp: 127.0.0.1
+
+and:
+security:
+  authorization: 'enabled'
+
+in aws inbound settings:
+TCP 27017 inbound rule, set to 0.0.0.0/0
+
+net stop MongoDB
+net start MongoDB
+
+then use login string to login
+
