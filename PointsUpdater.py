@@ -12,21 +12,23 @@ total_accounts=len(list(result))
 print("Total accounts Database", total_accounts)
 
 for i in range(506,total_accounts+1): #Only 864 Accounts in Old Database
-    if i >= 1 and i <= 863:
+    if i >= 1 and i <= 843:
         CurrentUser = collection.find_one({"UserId": i})
         CurrentUser2 = collection2.find_one({"UserId": i})
+        CurrentUser3 = collection3.find_one({"UserId": i})
         CurrentUserName = CurrentUser["Profile"]["Name"]
         CurrentUserKillsCount = CurrentUser["Kills"]
         CurrentUserKillsCount2 =CurrentUser2["Kills"]
+        points_balance_current = CurrentUser3["Wallet"]["Points"]
 
         print("{", i,"}", "Name: ", CurrentUserName)
-        if CurrentUser and "Wallet" in CurrentUser:
-            points_balance = CurrentUser["Wallet"]["Points"]
-        #    print("Fixed Database Points: ", points_balance)
+       # if CurrentUser and "Wallet" in CurrentUser:
+       #     points_balance = CurrentUser["Wallet"]["Points"]
+       #     print("Fixed Database Points: ", points_balance)
 
-        if CurrentUser2 and "Wallet" in CurrentUser2:
-            points_balance_old = CurrentUser2["Wallet"]["Points"]
-        #    print("Old Database Points: ", points_balance_old)
+       # if CurrentUser2 and "Wallet" in CurrentUser2:
+       #     points_balance_old = CurrentUser2["Wallet"]["Points"]
+       #     print("Broken Database Points: ", points_balance_old)
 
         CurrentUserKillsDifference = CurrentUserKillsCount - CurrentUserKillsCount2
     
@@ -36,20 +38,20 @@ for i in range(506,total_accounts+1): #Only 864 Accounts in Old Database
     
         print("User",CurrentUserName, "will receive",PointBalanceMultiplier,"extra points added to their balance.")
         
-        if points_balance_old >= points_balance:
+        #if points_balance_old >= points_balance:
 
-            NewPointsBalance = points_balance_old + PointBalanceMultiplier
+        #    NewPointsBalance = points_balance_old + PointBalanceMultiplier
         
         # print("Point Balance: ", NewPointsBalance)
        
-        else:
+        #else:
     
-            NewPointsBalance = points_balance + PointBalanceMultiplier
-    
-        # print("Point Balance: ", NewPointsBalance)
+        #    NewPointsBalance = points_balance + PointBalanceMultiplier
+        NewPointsBalance = points_balance_current + PointBalanceMultiplier
+        print("Point Balance: ", NewPointsBalance)
 
     elif i >= 864:
-        CurrentUser = collection.find_one({"UserId": i})
+        CurrentUser = collection3.find_one({"UserId": i})
         CurrentUserName = CurrentUser["Profile"]["Name"]
         CurrentUserKillsCount = CurrentUser["Kills"]
         if CurrentUser and "Wallet" in CurrentUser:
@@ -59,7 +61,7 @@ for i in range(506,total_accounts+1): #Only 864 Accounts in Old Database
 
         print("User",CurrentUserName, "Points Balance will be set to",NewPointsBalance)
     
-    db.UsersTest.update_one(
+    db.Users.update_one(
 
         {"UserId": i},
         { "$set": { "Wallet.Points": NewPointsBalance}}
