@@ -35,9 +35,7 @@ for j in range(1,total_accounts+1):
         CurrentPointsCount = CurrentDB["Wallet"]["Points"]
         FixedKillsCount = FixedDB["Kills"]
         BrokenKillsCount = BrokenDB["Kills"]
-        CurrentKillsCount = CurrentDB["Kills"]
-     
-        NewPointsCount = BrokenPointsCount - FixedPointsCount
+
         Kills = FixedKillsCount - BrokenKillsCount
         NewBalance = Kills * 10
         NewBalance = NewBalance + CurrentPointsCount
