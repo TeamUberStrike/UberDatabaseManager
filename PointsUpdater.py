@@ -22,8 +22,7 @@ for j in range(1,total_accounts+1):
         FixedKillsCount = FixedDB["Kills"]
         BrokenKillsCount = BrokenDB["Kills"]
         CurrentKillsCount = CurrentDB["Kills"]
-    
-        NewPointsCount = BrokenPointsCount - FixedPointsCount
+
         Kills = FixedKillsCount - BrokenKillsCount
         NewBalance = Kills * 10
         NewBalance = NewBalance + CurrentPointsCount
@@ -41,11 +40,13 @@ for j in range(1,total_accounts+1):
         CurrentKillsCount = CurrentDB["Kills"]
         NewBalance = Kills * 10
         NewBalance = NewBalance + CurrentPointsCount
+        if j == 883:
+            NewBalance = NewBalance + 50000
         db.Users.update_one(
             { "UserId": j},
             { "$set": {"Wallet.Points": NewBalance}}
         )
-        
+#print("User:",j,"Points:",NewBalance)
 
 
 
