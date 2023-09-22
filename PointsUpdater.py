@@ -17,7 +17,7 @@ def addPointsToAwardWinners()
         AwardBalance = CurrentPointsCount + 50000
     
     db.Users.update_one(
-        { "UserId": j},
+        { "UserId": h},
         { "$set": {"Wallet.Points": AwardBalance}}
     )
 
