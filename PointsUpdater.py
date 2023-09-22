@@ -11,8 +11,10 @@ total_accounts=len(list(result))
 
 def addPointsToAwardWinners()
     AwardWinners = [2, 5, 13, 69, 71, 114, 118, 140, 224, 491, 555, 670, 815, 883]
-    for i in AwardWinners:
-        AwardBalance = NewBalance + 50000
+    for h in AwardWinners:
+        CurrentDB = CollectionCurrentUsers.find_one({"UserId": h})
+        CurrentPointsCount = CurrentDB["Wallet"]["Points"]
+        AwardBalance = CurrentPointsCount + 50000
     
     db.Users.update_one(
         { "UserId": j},
