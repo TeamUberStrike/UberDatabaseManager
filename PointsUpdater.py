@@ -38,12 +38,12 @@ for j in range(1,total_accounts+1):
 
         AddPointsforKills = FixedKillsCount - BrokenKillsCount
         NewBalance = AddPointsforKills * 10
-        NewBalance = NewBalance + CurrentPointsCount
+        LiveBalance = NewBalance + CurrentPointsCount
         
     
         db.Users.update_one(
             { "UserId": j},
-            { "$set": {"Wallet.Points": NewBalance}}
+            { "$set": {"Wallet.Points": LiveBalance}}
         )
     if j >= 863:
         FixedDB = CollectionFixedUsers.find_one({"UserId": j})
@@ -51,11 +51,11 @@ for j in range(1,total_accounts+1):
         CurrentPointsCount = CurrentDB["Wallet"]["Points"]
         CurrentKillsCount = CurrentDB["Kills"]
         NewBalance = CurrentKillsCount * 10
-        NewBalance = NewBalance + CurrentPointsCount
+        LiveBalance = NewBalance + CurrentPointsCount
         
         db.Users.update_one(
             { "UserId": j},
-            { "$set": {"Wallet.Points": NewBalance}}
+            { "$set": {"Wallet.Points": LiveBalance}}
         )
 #print("User:",j,"Points:",NewBalance)
 
