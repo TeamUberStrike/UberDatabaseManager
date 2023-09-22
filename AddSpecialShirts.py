@@ -1,9 +1,8 @@
 from pymongo import MongoClient
 
 client = MongoClient("mongodb://uber:admin@localhost:27017/?authMechanism=SCRAM-SHA-1&authSource=admin")
-db = client.admin
-collection = db["Test"]
 
+db = client.admin
 result = db.Test.find()
 total_accounts=len(list(result))
 
@@ -26,15 +25,34 @@ for i in Cmids:
     print("Cmid:",i)
     for Item in ItemstoAdd:
         ItemId = Item
-        print("Item:",ItemId)
-        db.TestUser.update_one(
+        
+        db.Users.update_one(
             {"UserId": i},
             { "$addToSet": { "Inventory" : 
                 {
                     "AmountRemaining": -1,
                     "Cmid": i,
                     "ExpirationDate": None,
-                    "ItemId": ItemId
+                    "ItemId": Item
                 }
             }}
         )
+        if Item == AdminShirt:
+            ItemName = "Admin Shirt"
+        elif Item == BetaHeroShirt:
+            ItemName = "Beta Hero Shirt"
+        elif Item == GlobalModShirt:
+            ItemName = "Global Moderator Shirt"
+        elif Item == ModShirt:
+            ItemName = "Moderator Shirt"
+        elif Item == QAShirt:
+            ItemName = "QA Shirt"
+        elif Item == SLDShirt:
+            ItemName = "SLD Clan Shirt"
+        elif Item == C4CShirt:
+            ItemName = "C4C Clan Shirt"
+        elif Item == DEDShirt:
+            ItemName = "DED Clan Shirt"
+        elif Item == ST6IXShirt:
+            ItemName = "ST6IX Clan Shirt"
+        print("Item:",ItemName,"was added!")
