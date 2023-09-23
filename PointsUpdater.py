@@ -61,7 +61,7 @@ for j in range(1,total_accounts+1):
         CurrentKillsCount = CurrentDB["Kills"]
         KillsAddedBalance = CurrentKillsCount * 10
         
-        AccountBalanceUsed = CurrentPointsCount - FixedPointsCount
+        AccountBalanceUsed = 10000 - FixedPointsCount
         print("Balance Used:",AccountBalanceUsed)
         LiveBalance = AccountBalanceUsed + CurrentPointsCount
        # db.Users.update_one(
