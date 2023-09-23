@@ -63,7 +63,7 @@ for j in range(1,total_accounts+1):
         
         AccountBalanceUsed = 10000 - FixedPointsCount
         print("Balance Used:",AccountBalanceUsed)
-        LiveBalance = AccountBalanceUsed + CurrentPointsCount
+        LiveBalance = AccountBalanceUsed + CurrentPointsCount + KillsAddedBalance
        # db.Users.update_one(
        #     { "UserId": j},
        #     { "$set": {"Wallet.Points": LiveBalance}}
