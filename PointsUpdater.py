@@ -44,7 +44,7 @@ for j in range(1,total_accounts+1):
         AccountBalanceUsed = BrokenPointsCount - FixedPointsCount
         print("Balance Used w/o Adding New Kills.",AccountBalanceUsed)
         KillsforPointsAdded = FixedKillsCount - BrokenKillsCount
-        KillsAddedBalance = KillsforPointsAdded * 10
+        KillsAddedBalance = KillsforPointsAdded * 20
         BalancebeforeLive = KillsAddedBalance + CurrentPointsCount
         print("Balance w/ New Kills",BalancebeforeLive)
         LiveBalance = BalancebeforeLive + AccountBalanceUsed
@@ -59,7 +59,7 @@ for j in range(1,total_accounts+1):
         CurrentPointsCount = CurrentDB["Wallet"]["Points"]
         FixedPointsCount = FixedDB["Wallet"]["Points"]
         CurrentKillsCount = CurrentDB["Kills"]
-        KillsAddedBalance = CurrentKillsCount * 10
+        KillsAddedBalance = CurrentKillsCount * 20
         
         AccountBalanceUsed = 10000 - FixedPointsCount
         print("Balance Used:",AccountBalanceUsed)
